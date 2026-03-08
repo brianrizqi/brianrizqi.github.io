@@ -225,7 +225,7 @@ const FP={
         this.current = idx;
         this._updateUI();
 
-        const LEAVE_MS = 420, ENTER_REVEAL = 300;
+        const LEAVE_MS = 750, ENTER_REVEAL = 850;
 
         setTimeout(()=>{
             // Clean up outgoing
@@ -261,17 +261,24 @@ const FP={
     _updateUI(){
         // Left nav
         document.querySelectorAll('.sbn').forEach((item,i)=>item.classList.toggle('active',i===this.current));
-        // Next button
-        const nb=document.getElementById('nextBtn'), nl=document.getElementById('nextLabel');
+        
+        const nb = document.getElementById('nextBtn'),
+              nl = nb?.querySelector('.next-label'),
+              pb = document.getElementById('prevBtn');
+
+        // Toggle PREV button visibility (show if not on first slide)
+        if(pb) pb.classList.toggle('show', this.current > 0);
+
+        // Toggle NEXT button behavior (Top on last slide)
         if(nb){
-            if(this.current>=this.total-1){
+            if(this.current >= this.total - 1){
                 nb.classList.add('last');
-                if(nl) nl.textContent='TOP';
-                nb.querySelector('svg').style.transform='rotate(180deg)';
+                if(nl) nl.textContent = 'TOP';
+                nb.querySelector('svg').style.transform = 'rotate(180deg)';
             } else {
                 nb.classList.remove('last');
-                if(nl) nl.textContent='SCROLL';
-                nb.querySelector('svg').style.transform='';
+                if(nl) nl.textContent = 'SCROLL';
+                nb.querySelector('svg').style.transform = '';
             }
         }
     },
@@ -281,23 +288,31 @@ const FP={
         let lastNav = 0;
         let accDelta = 0;
         let resetTimer = null;
-        const COOLDOWN = 900;   // ms minimum between navigations
-        const THRESHOLD = 60;   // accumulated deltaY needed to trigger
+        const COOLDOWN = 1200;  // ms minimum between navigations
+        const THRESHOLD = 80;   // accumulated deltaY needed to trigger
 
         window.addEventListener('wheel', e=>{
             if(document.getElementById('mobOverlay')?.classList.contains('open')) return;
+            
+            const slide = this.slides[this.current];
             // Let horizontal scroll on works strip pass through
-            const wrap=this.slides[this.current]?.querySelector('.wstrap');
+            const wrap = slide?.querySelector('.wstrap');
             if(wrap && Math.abs(e.deltaX)>Math.abs(e.deltaY)) return;
+
+            // Check internal scroll boundaries
+            const isAtTop = slide.scrollTop <= 0;
+            const isAtBottom = Math.ceil(slide.scrollTop + slide.clientHeight) >= slide.scrollHeight;
+
+            // If we're scrolling down and not at bottom, or up and not at top, allow internal scroll
+            if(e.deltaY > 0 && !isAtBottom) return;
+            if(e.deltaY < 0 && !isAtTop) return;
+
             e.preventDefault();
 
             const now = Date.now();
-            // Hard cooldown gate — don't even accumulate during transition
             if(now - lastNav < COOLDOWN) return;
 
             accDelta += e.deltaY;
-
-            // Reset accumulator if user pauses scrolling
             clearTimeout(resetTimer);
             resetTimer = setTimeout(()=>{ accDelta=0; }, 200);
 
@@ -313,7 +328,16 @@ const FP={
         let ty=0;
         window.addEventListener('touchstart',e=>{ty=e.touches[0].clientY;},{passive:true});
         window.addEventListener('touchend',e=>{
-            const dy=ty-e.changedTouches[0].clientY; if(Math.abs(dy)<60) return;
+            const dy=ty-e.changedTouches[0].clientY; 
+            if(Math.abs(dy)<60) return;
+
+            const slide = this.slides[this.current];
+            const isAtTop = slide.scrollTop <= 0;
+            const isAtBottom = Math.ceil(slide.scrollTop + slide.clientHeight) >= slide.scrollHeight;
+
+            if(dy > 0 && !isAtBottom) return; // Swipe up -> scroll down
+            if(dy < 0 && !isAtTop) return;    // Swipe down -> scroll up
+
             this.go(this.current+(dy>0?1:-1));
         },{passive:true});
 
@@ -326,10 +350,12 @@ const FP={
         // Left nav dots
         document.querySelectorAll('.sbn').forEach(item=>item.addEventListener('click',()=>this.go(+item.dataset.target)));
 
-        // Next/top circular button
+        // Click Nav Buttons
         document.getElementById('nextBtn')?.addEventListener('click',()=>{
-            if(this.current>=this.total-1) this.go(0);
-            else this.go(this.current+1);
+            if(this.current>=this.total-1) this.go(0); else this.go(this.current+1);
+        });
+        document.getElementById('prevBtn')?.addEventListener('click',()=>{
+            this.go(this.current - 1);
         });
 
         // data-go buttons
