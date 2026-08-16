@@ -14,15 +14,15 @@ export function Skills() {
         <div className="mt-10 grid gap-y-8 md:grid-cols-12 md:gap-x-10">
           <Reveal delay={60} className="md:col-span-7">
             <h2 className="display text-[clamp(2.3rem,6.5vw,5rem)]">
-              Keahlian yang
+              Skills proven
               <br />
-              teruji nyata<span className="text-acc">.</span>
+              in the field<span className="text-acc">.</span>
             </h2>
           </Reveal>
           <Reveal delay={130} className="md:col-span-5 md:rule-l md:pl-10">
             <p className="text-[17px] leading-[1.65] text-muted">
-              Setiap skill diasah langsung dalam proyek-proyek nyata selama
-              bertahun-tahun, bukan sekadar teori.
+              Every skill here was sharpened on real projects over many years —
+              not just studied in theory.
             </p>
           </Reveal>
         </div>

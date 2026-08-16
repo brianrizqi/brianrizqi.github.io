@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Archivo } from "next/font/google";
 import "./globals.css";
+import { SITE } from "@/lib/site";
 
 const sans = Inter({
   subsets: ["latin"],
@@ -17,45 +18,71 @@ const display = Archivo({
   display: "swap",
 });
 
-const SITE = "https://brianrizqi.vercel.app";
+const TITLE = "Brian Rizqi P.D. — Software Engineer & Lecturer";
+const DESCRIPTION =
+  "Dr. Brian Rizqi Paradisiaca Darnoto — Software Engineer, Lecturer, and Project Manager with 9+ years building web, mobile, and enterprise systems in Indonesia.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
   title: {
-    default: "Brian Rizqi P.D. — Software Engineer",
+    default: TITLE,
     template: "%s · Brian Rizqi P.D.",
   },
-  description:
-    "Dr. Brian Rizqi Paradisiaca Darnoto — Software Engineer, Lecturer & Project Manager. 5+ tahun membangun aplikasi web, mobile, dan sistem enterprise.",
+  description: DESCRIPTION,
+  applicationName: "Brian Rizqi P.D.",
   keywords: [
     "Brian Rizqi",
-    "Software Engineer",
-    "Fullstack Developer",
+    "Brian Rizqi Paradisiaca Darnoto",
+    "Software Engineer Indonesia",
+    "Fullstack Developer Jember",
     "Project Manager",
-    "Dosen",
-    "Jember",
-    "Surabaya",
+    "Lecturer",
+    "Web Developer Surabaya",
+    "Laravel Developer",
+    "Next.js Developer",
   ],
-  authors: [{ name: "Brian Rizqi Paradisiaca Darnoto" }],
+  authors: [{ name: "Brian Rizqi Paradisiaca Darnoto", url: SITE }],
+  creator: "Brian Rizqi Paradisiaca Darnoto",
+  publisher: "Brian Rizqi Paradisiaca Darnoto",
+  alternates: { canonical: "/" },
+  category: "technology",
   openGraph: {
-    type: "website",
-    locale: "id_ID",
+    type: "profile",
+    locale: "en_US",
     url: SITE,
     siteName: "Brian Rizqi P.D.",
-    title: "Brian Rizqi P.D. — Software Engineer",
-    description:
-      "Software Engineer, Lecturer & Project Manager. Membangun produk digital yang scalable, cepat, dan berdampak nyata.",
-    images: [{ url: "/images/brian.jpeg", width: 1200, height: 630 }],
+    title: TITLE,
+    description: DESCRIPTION,
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Brian Rizqi P.D. — Software Engineer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Brian Rizqi P.D. — Software Engineer",
-    description:
-      "Software Engineer, Lecturer & Project Manager. Membangun produk digital yang scalable dan berdampak.",
-    images: ["/images/brian.jpeg"],
+    title: TITLE,
+    description: DESCRIPTION,
+    images: ["/opengraph-image"],
   },
-  icons: { icon: "/images/logo.png" },
-  robots: { index: true, follow: true },
+  icons: {
+    icon: "/images/logo.png",
+    apple: "/images/logo.png",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
 };
 
 export const viewport: Viewport = {
@@ -84,7 +111,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="id" data-theme="dark" suppressHydrationWarning>
+    <html lang="en" data-theme="dark" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>

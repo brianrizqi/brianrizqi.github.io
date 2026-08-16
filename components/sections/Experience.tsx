@@ -14,14 +14,14 @@ export function Experience() {
         <div className="mt-10 grid gap-y-6 md:grid-cols-12 md:items-end md:gap-x-10">
           <Reveal delay={60} className="md:col-span-8">
             <h2 className="display text-[clamp(2.3rem,7vw,5.5rem)] uppercase">
-              5+ Tahun
+              9+ Years
               <br />
-              Pengalaman<span className="text-acc">.</span>
+              Of Experience<span className="text-acc">.</span>
             </h2>
           </Reveal>
           <Reveal delay={130} className="md:col-span-4">
             <p className="text-[11px] uppercase tracking-[0.2em] text-muted">
-              24 Proyek · 15 Klien · 3 Kota
+              24 Projects · 15 Clients · 3 Cities
             </p>
           </Reveal>
         </div>
@@ -30,9 +30,9 @@ export function Experience() {
         <Reveal delay={160}>
           <div className="mt-16 hidden grid-cols-12 gap-x-8 border-b border-line pb-3 text-[10px] uppercase tracking-[0.2em] text-muted md:grid">
             <span className="col-span-1">No</span>
-            <span className="col-span-5">Peran</span>
-            <span className="col-span-4">Organisasi</span>
-            <span className="col-span-2 text-right">Tahun</span>
+            <span className="col-span-5">Role</span>
+            <span className="col-span-4">Organisation</span>
+            <span className="col-span-2 text-right">Year</span>
           </div>
         </Reveal>
 

@@ -76,25 +76,23 @@ export function Works() {
         <div className="mt-10 flex flex-wrap items-end justify-between gap-6">
           <Reveal delay={60}>
             <h2 className="display text-[clamp(2.3rem,7vw,5.5rem)]">
-              Proyek yang
+              Selected
               <br />
-              sudah dibuat<span className="text-acc">.</span>
+              work<span className="text-acc">.</span>
             </h2>
           </Reveal>
 
           <Reveal delay={130}>
             <div className="flex items-end gap-8">
               <span className="text-[11px] uppercase tracking-[0.2em] text-muted">
-                {works.length} Proyek
+                {works.length} Projects
               </span>
               <div className="hidden gap-0 sm:flex">
                 {([-1, 1] as const).map((dir) => (
                   <button
                     key={dir}
                     onClick={() => scrollBy(dir)}
-                    aria-label={
-                      dir === 1 ? "Proyek berikutnya" : "Proyek sebelumnya"
-                    }
+                    aria-label={dir === 1 ? "Next projects" : "Previous projects"}
                     className="grid h-12 w-12 place-items-center border border-line text-txt transition-colors duration-300 hover:bg-ink hover:text-bg"
                   >
                     {dir === 1 ? "→" : "←"}
@@ -159,7 +157,7 @@ export function Works() {
 
       <div className="shell">
         <p className="mt-6 text-[11px] uppercase tracking-[0.2em] text-muted">
-          ← Geser untuk melihat semua proyek →
+          ← Drag to explore all projects →
         </p>
       </div>
     </section>

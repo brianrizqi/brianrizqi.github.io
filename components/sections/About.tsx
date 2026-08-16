@@ -15,11 +15,11 @@ export function About() {
           <div className="md:col-span-7">
             <Reveal delay={60}>
               <h2 className="display text-[clamp(2.3rem,6.5vw,5rem)]">
-                Saya membangun
+                I build digital
                 <br />
-                pengalaman digital
+                experiences that
                 <br />
-                yang bermakna<span className="text-acc">.</span>
+                actually matter<span className="text-acc">.</span>
               </h2>
             </Reveal>
           </div>
@@ -27,12 +27,12 @@ export function About() {
           <div className="md:col-span-5 md:rule-l md:pl-10">
             <Reveal delay={130}>
               <p className="text-[17px] leading-[1.65]">
-                Software Engineer dengan pengalaman{" "}
+                Software Engineer with{" "}
                 <span className="underline decoration-acc decoration-2 underline-offset-4">
-                  5+ tahun
+                  9+ years
                 </span>{" "}
-                mengembangkan aplikasi web, mobile, dan sistem enterprise — dari
-                startup hingga perusahaan multinasional.
+                of experience building web, mobile, and enterprise systems — from
+                startups to multinational companies.
               </p>
             </Reveal>
 

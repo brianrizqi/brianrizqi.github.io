@@ -64,7 +64,7 @@ export function Navigation() {
       <nav className="fixed left-0 top-0 z-50 hidden h-screen w-[210px] flex-col justify-between border-r border-line bg-bg px-8 py-10 lg:flex">
         <button
           onClick={() => goTo(0)}
-          aria-label="Ke beranda"
+          aria-label="Back to home"
           className="w-11 transition-opacity duration-300 hover:opacity-70"
         >
           <Image
@@ -131,7 +131,7 @@ export function Navigation() {
       <header className="fixed left-0 top-0 z-50 flex w-full items-center justify-between border-b border-line bg-bg/90 px-5 py-3.5 backdrop-blur-md lg:hidden">
         <button
           onClick={() => goTo(0)}
-          aria-label="Ke beranda"
+          aria-label="Back to home"
           className="transition-opacity duration-300 hover:opacity-70"
         >
           <Image
@@ -148,7 +148,7 @@ export function Navigation() {
           <ThemeToggle />
           <button
             onClick={() => setMenuOpen((v) => !v)}
-            aria-label="Buka menu"
+            aria-label="Toggle menu"
             aria-expanded={menuOpen}
             className="grid h-10 w-10 place-items-center border border-line"
           >

@@ -24,25 +24,29 @@ npx vercel        # preview
 npx vercel --prod # production
 ```
 
-Setelah domain final diketahui, ganti konstanta `SITE` di [app/layout.tsx](app/layout.tsx) dan `url` pada JSON-LD di [app/page.tsx](app/page.tsx) supaya metadata Open Graph menunjuk ke domain yang benar.
+Tidak ada environment variable yang dibutuhkan — kontak memakai link `mailto:` langsung.
 
 ## Struktur
 
 ```
 app/
-  layout.tsx        # metadata SEO, font, anti-flash theme script
-  page.tsx          # merangkai semua section + JSON-LD
-  globals.css       # design token (light/dark) + component layer
+  layout.tsx            # metadata SEO, font, anti-flash theme script
+  page.tsx              # merangkai semua section + JSON-LD Person
+  globals.css           # design token (light/dark) + component layer
+  opengraph-image.tsx   # kartu social 1200×630, di-render saat build
+  sitemap.ts            # /sitemap.xml
+  robots.ts             # /robots.txt
 components/
   Navigation.tsx    # sidebar desktop, drawer mobile, scroll-spy, progress bar
   Cursor.tsx        # cursor kustom (pointer halus saja)
-  ParticleField.tsx # canvas partikel di hero
   Reveal.tsx        # wrapper animasi scroll-reveal
   Counter.tsx       # angka yang menghitung naik saat terlihat
-  Icons.tsx         # semua ikon SVG inline
+  Icons.tsx         # ikon SVG inline (sun/moon)
   sections/         # Hero, About, Education, Experience, Skills, Services, Works, Contact
 data/
   portfolio.ts      # SEMUA konten ada di sini
+lib/
+  site.ts           # konstanta domain kanonik
 public/images/      # foto profil, logo, 24 screenshot proyek
 ```
 

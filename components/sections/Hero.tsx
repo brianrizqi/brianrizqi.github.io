@@ -31,7 +31,7 @@ export function Hero() {
           className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2 border-b border-line pb-4 text-[11px] font-semibold uppercase tracking-[0.24em] text-muted"
         >
           <span>01 — Index</span>
-          <span className="hidden sm:block">Jember · Surabaya, ID</span>
+          <span className="hidden sm:block">Jember · East Java, ID</span>
           <span>{profile.tagline}</span>
         </motion.div>
 
@@ -88,11 +88,11 @@ export function Hero() {
             className="md:col-span-5 md:rule-l md:pl-10"
           >
             <p className="max-w-md text-[19px] leading-[1.5]">
-              Membangun produk digital yang{" "}
+              Building digital products that are{" "}
               <span className="underline decoration-acc decoration-2 underline-offset-4">
                 scalable
               </span>
-              , cepat, dan berdampak nyata di setiap lini bisnis.
+              , fast, and make a real impact across every line of business.
             </p>
             <p className="mt-5 max-w-md text-sm leading-relaxed text-muted">
               {profile.role} · {profile.subRole}
@@ -100,10 +100,10 @@ export function Hero() {
 
             <div className="mt-8 flex flex-wrap gap-3">
               <button onClick={() => scrollTo("works")} className="btn-solid">
-                Lihat Karya
+                View Work
               </button>
               <button onClick={() => scrollTo("contact")} className="btn-outline">
-                Kontak
+                Get in Touch
               </button>
             </div>
           </motion.div>
@@ -141,7 +141,7 @@ export function Hero() {
           <button
             onClick={() => scrollTo("about")}
             className="rule-link"
-            aria-label="Scroll ke bawah"
+            aria-label="Scroll down"
           >
             ↓ Scroll
           </button>

@@ -9,22 +9,48 @@ import { Services } from "@/components/sections/Services";
 import { Skills } from "@/components/sections/Skills";
 import { Works } from "@/components/sections/Works";
 import { profile } from "@/data/portfolio";
+import { SITE } from "@/lib/site";
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: profile.name,
-  jobTitle: "Software Engineer",
+  givenName: "Brian",
+  familyName: "Darnoto",
+  honorificPrefix: "Dr.",
+  jobTitle: ["Software Engineer", "Lecturer", "Project Manager"],
+  description:
+    "Software Engineer, Lecturer, and Project Manager with 9+ years building web, mobile, and enterprise systems.",
   email: `mailto:${profile.email}`,
-  url: "https://brianrizqi.vercel.app",
+  url: SITE,
+  image: `${SITE}/images/brian.jpeg`,
   sameAs: [profile.linkedin],
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Jember",
+    addressRegion: "East Java",
+    addressCountry: "ID",
+  },
+  worksFor: {
+    "@type": "CollegeOrUniversity",
+    name: "University of Jember",
+  },
   alumniOf: [
-    { "@type": "CollegeOrUniversity", name: "Universitas Jember" },
+    { "@type": "CollegeOrUniversity", name: "University of Jember" },
     {
       "@type": "CollegeOrUniversity",
       name: "Institut Teknologi Sepuluh Nopember",
     },
   ],
+  knowsAbout: [
+    "Software Engineering",
+    "Web Development",
+    "Mobile Development",
+    "Database Engineering",
+    "Project Management",
+    "System Analysis",
+  ],
+  knowsLanguage: ["en", "id"],
 };
 
 export default function Page() {

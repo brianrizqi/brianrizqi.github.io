@@ -13,7 +13,7 @@ export function Education() {
 
         <Reveal delay={60}>
           <h2 className="display mt-10 text-[clamp(2.3rem,7vw,5.5rem)]">
-            Perjalanan akademik<span className="text-acc">.</span>
+            Academic journey<span className="text-acc">.</span>
           </h2>
         </Reveal>
 
