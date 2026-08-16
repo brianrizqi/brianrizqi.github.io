@@ -53,9 +53,9 @@ export type ExperienceItem = {
 };
 
 export const experience: ExperienceItem[] = [
+  { year: "2024–Present", title: "Dosen / Lecturer", org: "Universitas Jember", tag: "Now" },
   { year: "2025–Present", title: "Post Doctoral", org: "ITS Surabaya", tag: "Now" },
   { year: "2024–2026", title: "Project Manager", org: "Rootpixel" },
-  { year: "2024–Present", title: "Dosen / Lecturer", org: "Universitas Jember", tag: "Now" },
   { year: "2025", title: "Sertifikasi BNSP", org: "UI/UX Design", tag: "BNSP" },
   { year: "2023–2024", title: "Fullstack Developer", org: "Halosis / PT HSI" },
   { year: "2022–2024", title: "Fullstack Developer", org: "Indo Ahsan Teknologi" },

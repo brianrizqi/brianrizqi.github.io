@@ -54,15 +54,15 @@ export function Cursor() {
     <div aria-hidden className="pointer-events-none fixed inset-0 z-[100]">
       <div
         ref={dotRef}
-        className="fixed left-0 top-0 h-1.5 w-1.5 rounded-full bg-acc"
+        className="fixed left-0 top-0 h-1 w-1 rounded-full bg-acc"
       />
       <div
         ref={ringRef}
-        className="fixed left-0 top-0 rounded-full border border-acc transition-[width,height,opacity] duration-300 ease-smooth"
+        className="fixed left-0 top-0 rounded-full border border-txt transition-[width,height,opacity] duration-300 ease-smooth"
         style={{
-          width: hovering ? 46 : 28,
-          height: hovering ? 46 : 28,
-          opacity: hovering ? 0.9 : 0.42,
+          width: hovering ? 44 : 26,
+          height: hovering ? 44 : 26,
+          opacity: hovering ? 0.75 : 0.3,
         }}
       />
     </div>

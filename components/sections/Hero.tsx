@@ -36,7 +36,8 @@ export function Hero() {
         </motion.div>
 
         {/* Masthead */}
-        <h1 className="display mt-10 text-[clamp(3.2rem,15.5vw,15rem)] uppercase">
+        {/* Sized so the longest word ("ENGINEER") fits the shell without clipping */}
+        <h1 className="display mt-10 text-[clamp(2.7rem,12.2vw,11.5rem)] uppercase">
           {["Software", "Engineer"].map((word, i) => (
             <span key={word} className="block overflow-hidden">
               <motion.span

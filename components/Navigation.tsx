@@ -5,27 +5,6 @@ import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
 import { useEffect, useState } from "react";
 import { profile, sections } from "@/data/portfolio";
 import { ThemeToggle } from "./ThemeToggle";
-import {
-  IconBriefcase,
-  IconCap,
-  IconChat,
-  IconGrid,
-  IconHome,
-  IconPulse,
-  IconStar,
-  IconUser,
-} from "./Icons";
-
-const ICONS = [
-  IconHome,
-  IconUser,
-  IconCap,
-  IconBriefcase,
-  IconPulse,
-  IconStar,
-  IconGrid,
-  IconChat,
-];
 
 const IDS = sections.map((s) => s.toLowerCase());
 
@@ -76,70 +55,92 @@ export function Navigation() {
 
   return (
     <>
-      {/* Scroll progress bar */}
       <motion.div
         style={{ scaleX: progress }}
-        className="fixed left-0 top-0 z-[60] h-[3px] w-full origin-left bg-gradient-to-r from-acc to-acc2"
+        className="fixed left-0 top-0 z-[60] h-[2px] w-full origin-left bg-acc"
       />
 
-      {/* ---------- Desktop rail ---------- */}
-      <nav className="fixed left-0 top-0 z-50 hidden h-screen w-[84px] flex-col items-center justify-between border-r border-line bg-bg2/60 py-8 backdrop-blur-xl lg:flex">
-        <button onClick={() => goTo(0)} aria-label="Ke beranda">
+      {/* ---------- Desktop: numbered index rail ---------- */}
+      <nav className="fixed left-0 top-0 z-50 hidden h-screen w-[210px] flex-col justify-between border-r border-line bg-bg px-8 py-10 lg:flex">
+        <button
+          onClick={() => goTo(0)}
+          aria-label="Ke beranda"
+          className="w-11 transition-opacity duration-300 hover:opacity-70"
+        >
           <Image
             src={profile.logo}
-            alt="Logo Brian Rizqi"
-            width={38}
-            height={38}
-            className="rounded-lg object-contain"
+            alt="Brian Rizqi"
+            width={44}
+            height={44}
+            priority
+            className="h-11 w-11 object-contain"
           />
         </button>
 
-        <div className="flex flex-col gap-2">
+        <ul className="flex flex-col gap-0.5">
           {sections.map((label, i) => {
-            const Icon = ICONS[i];
             const isActive = active === i;
             return (
-              <button
-                key={label}
-                onClick={() => goTo(i)}
-                aria-label={label}
-                aria-current={isActive ? "true" : undefined}
-                className="group relative grid h-11 w-11 place-items-center rounded-xl transition-colors duration-300"
-              >
-                {isActive && (
-                  <motion.span
-                    layoutId="nav-pill"
-                    transition={{ type: "spring", stiffness: 380, damping: 32 }}
-                    className="absolute inset-0 rounded-xl bg-gradient-to-br from-acc to-acc2"
-                  />
-                )}
-                <Icon
-                  className={`relative z-10 h-[19px] w-[19px] transition-colors duration-300 ${
-                    isActive
-                      ? "text-white"
-                      : "text-muted group-hover:text-acc"
-                  }`}
-                />
-                <span className="pointer-events-none absolute left-[58px] z-20 whitespace-nowrap rounded-lg border border-line bg-bg2 px-3 py-1.5 text-xs font-semibold opacity-0 shadow-lg transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100">
-                  {label}
-                </span>
-              </button>
+              <li key={label}>
+                <button
+                  onClick={() => goTo(i)}
+                  aria-current={isActive ? "true" : undefined}
+                  className="group flex w-full items-baseline gap-3 py-1.5 text-left"
+                >
+                  <span
+                    className={`text-[10px] tabular-nums transition-colors duration-300 ${
+                      isActive ? "text-acc" : "text-faint"
+                    }`}
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span
+                    className={`text-[13px] uppercase tracking-[0.12em] transition-colors duration-300 ${
+                      isActive
+                        ? "text-txt"
+                        : "text-muted group-hover:text-txt"
+                    }`}
+                  >
+                    {label}
+                  </span>
+                  {isActive && (
+                    <motion.span
+                      layoutId="nav-rule"
+                      transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                      className="ml-auto h-px w-6 self-center bg-acc"
+                    />
+                  )}
+                </button>
+              </li>
             );
           })}
-        </div>
+        </ul>
 
-        <ThemeToggle />
+        <div className="flex items-center justify-between">
+          <a
+            href={`mailto:${profile.email}`}
+            className="rule-link text-[11px] uppercase tracking-[0.16em] text-muted"
+          >
+            Email
+          </a>
+          <ThemeToggle />
+        </div>
       </nav>
 
       {/* ---------- Mobile header ---------- */}
-      <header className="fixed left-0 top-0 z-50 flex w-full items-center justify-between border-b border-line bg-bg2/80 px-5 py-3 backdrop-blur-xl lg:hidden">
-        <button onClick={() => goTo(0)} aria-label="Ke beranda">
+      <header className="fixed left-0 top-0 z-50 flex w-full items-center justify-between border-b border-line bg-bg/90 px-5 py-3.5 backdrop-blur-md lg:hidden">
+        <button
+          onClick={() => goTo(0)}
+          aria-label="Ke beranda"
+          className="transition-opacity duration-300 hover:opacity-70"
+        >
           <Image
             src={profile.logo}
-            alt="Logo Brian Rizqi"
+            alt="Brian Rizqi"
             width={34}
             height={34}
-            className="rounded-lg object-contain"
+            priority
+            className="h-[34px] w-[34px] object-contain"
           />
         </button>
 
@@ -149,18 +150,18 @@ export function Navigation() {
             onClick={() => setMenuOpen((v) => !v)}
             aria-label="Buka menu"
             aria-expanded={menuOpen}
-            className="grid h-10 w-10 place-items-center rounded-full border border-line"
+            className="grid h-10 w-10 place-items-center border border-line"
           >
             <span className="flex flex-col gap-[5px]">
               <motion.span
                 animate={menuOpen ? { rotate: 45, y: 3.5 } : { rotate: 0, y: 0 }}
-                className="block h-[2px] w-[18px] rounded bg-txt"
+                className="block h-[1.5px] w-[17px] bg-txt"
               />
               <motion.span
                 animate={
                   menuOpen ? { rotate: -45, y: -3.5 } : { rotate: 0, y: 0 }
                 }
-                className="block h-[2px] w-[18px] rounded bg-txt"
+                className="block h-[1.5px] w-[17px] bg-txt"
               />
             </span>
           </button>
@@ -174,21 +175,28 @@ export function Navigation() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[55] flex flex-col items-center justify-center gap-1 bg-bg/95 backdrop-blur-2xl lg:hidden"
+            transition={{ duration: 0.28 }}
+            className="fixed inset-0 z-[55] flex flex-col justify-center bg-bg px-6 lg:hidden"
           >
             {sections.map((label, i) => (
               <motion.button
                 key={label}
-                initial={{ opacity: 0, y: 26 }}
+                initial={{ opacity: 0, y: 22 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.05 + i * 0.05, duration: 0.5 }}
+                transition={{ delay: 0.04 + i * 0.045, duration: 0.45 }}
                 onClick={() => goTo(i)}
-                className={`font-display text-3xl transition-colors duration-300 ${
-                  active === i ? "grad-text" : "text-txt hover:text-acc"
-                }`}
+                className="flex items-baseline gap-5 border-b border-line py-4 text-left"
               >
-                {label}
+                <span
+                  className={`text-[11px] tabular-nums ${
+                    active === i ? "text-acc" : "text-faint"
+                  }`}
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="display text-[clamp(1.6rem,7vw,2.4rem)] uppercase">
+                  {label}
+                </span>
               </motion.button>
             ))}
           </motion.div>

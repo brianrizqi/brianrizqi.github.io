@@ -17,10 +17,13 @@ const jsonLd = {
   jobTitle: "Software Engineer",
   email: `mailto:${profile.email}`,
   url: "https://brianrizqi.vercel.app",
-  sameAs: [profile.github, profile.linkedin, profile.instagram],
+  sameAs: [profile.linkedin],
   alumniOf: [
     { "@type": "CollegeOrUniversity", name: "Universitas Jember" },
-    { "@type": "CollegeOrUniversity", name: "Institut Teknologi Sepuluh Nopember" },
+    {
+      "@type": "CollegeOrUniversity",
+      name: "Institut Teknologi Sepuluh Nopember",
+    },
   ],
 };
 
@@ -35,7 +38,7 @@ export default function Page() {
       <Cursor />
       <Navigation />
 
-      <main className="lg:pl-[84px]">
+      <main className="lg:pl-[210px]">
         <Hero />
         <About />
         <Education />

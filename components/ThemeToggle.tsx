@@ -24,7 +24,7 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
     <button
       onClick={toggle}
       aria-label={`Ganti ke mode ${theme === "dark" ? "terang" : "gelap"}`}
-      className={`grid h-10 w-10 place-items-center rounded-full border border-line text-txt transition-all duration-300 hover:border-acc hover:text-acc ${className}`}
+      className={`grid h-10 w-10 place-items-center border border-line text-txt transition-colors duration-300 hover:bg-ink hover:text-bg ${className}`}
     >
       {/* Render a stable icon until mounted to avoid hydration mismatch */}
       {mounted && theme === "dark" ? (
