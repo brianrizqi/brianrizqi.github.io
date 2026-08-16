@@ -5,7 +5,6 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { works } from "@/data/portfolio";
 import { Reveal } from "../Reveal";
-import { Counter } from "../Counter";
 
 export function Works() {
   const railRef = useRef<HTMLDivElement>(null);
@@ -22,7 +21,6 @@ export function Works() {
     let moved = false;
 
     const onDown = (e: PointerEvent) => {
-      // Ignore anything that isn't a primary mouse press (touch scrolls natively).
       if (e.pointerType === "touch") return;
       down = true;
       moved = false;
@@ -65,113 +63,104 @@ export function Works() {
   }, []);
 
   const scrollBy = useCallback((dir: 1 | -1) => {
-    railRef.current?.scrollBy({ left: dir * 340, behavior: "smooth" });
+    railRef.current?.scrollBy({ left: dir * 380, behavior: "smooth" });
   }, []);
 
   return (
-    <section id="works" className="section-pad relative overflow-hidden">
+    <section id="works" className="section-pad overflow-hidden">
       <div className="shell">
         <Reveal>
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <div>
-              <p className="eyebrow">Works</p>
-              <h2 className="mt-4 font-display text-[clamp(2rem,4.6vw,3.4rem)] font-bold leading-tight tracking-tight">
-                Proyek yang{" "}
-                <em className="grad-text not-italic">Sudah Dibuat.</em>
-              </h2>
-            </div>
+          <p className="index-mark">07 — Works</p>
+        </Reveal>
 
-            <div className="flex items-center gap-5">
-              <span className="font-display text-[clamp(2.6rem,7vw,4.2rem)] font-bold leading-none grad-text">
-                <Counter to={works.length} />
+        <div className="mt-10 flex flex-wrap items-end justify-between gap-6">
+          <Reveal delay={60}>
+            <h2 className="display text-[clamp(2.3rem,7vw,5.5rem)]">
+              Proyek yang
+              <br />
+              sudah dibuat<span className="text-acc">.</span>
+            </h2>
+          </Reveal>
+
+          <Reveal delay={130}>
+            <div className="flex items-end gap-8">
+              <span className="text-[11px] uppercase tracking-[0.2em] text-muted">
+                {works.length} Proyek
               </span>
-              <div className="hidden gap-2 sm:flex">
+              <div className="hidden gap-0 sm:flex">
                 {([-1, 1] as const).map((dir) => (
                   <button
                     key={dir}
                     onClick={() => scrollBy(dir)}
-                    aria-label={dir === 1 ? "Proyek berikutnya" : "Proyek sebelumnya"}
-                    className="grid h-11 w-11 place-items-center rounded-full border border-line text-muted transition-all duration-300 hover:border-acc hover:text-acc"
+                    aria-label={
+                      dir === 1 ? "Proyek berikutnya" : "Proyek sebelumnya"
+                    }
+                    className="grid h-12 w-12 place-items-center border border-line text-txt transition-colors duration-300 hover:bg-ink hover:text-bg"
                   >
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="h-4 w-4"
-                      style={{
-                        transform: dir === -1 ? "rotate(180deg)" : undefined,
-                      }}
-                    >
-                      <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
+                    {dir === 1 ? "→" : "←"}
                   </button>
                 ))}
               </div>
             </div>
-          </div>
-        </Reveal>
+          </Reveal>
+        </div>
       </div>
 
-      {/* Rail — full-bleed, starts aligned with the shell */}
+      {/* Full-bleed rail, first card aligned to the shell */}
       <div
         ref={railRef}
-        className={`no-scrollbar mask-fade-x mt-12 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-6 ${
+        className={`no-scrollbar mt-14 flex snap-x snap-mandatory gap-8 overflow-x-auto pb-4 ${
           dragging ? "cursor-grabbing select-none" : "cursor-grab"
         }`}
         style={{
-          paddingInline: "max(1.25rem, calc((100vw - 1240px) / 2 + 1.5rem))",
+          paddingInline: "max(1.25rem, calc((100vw - 1340px) / 2 + 4rem))",
         }}
       >
         {works.map((work, i) => (
           <motion.article
             key={work.title}
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{
-              duration: 0.65,
-              delay: Math.min(i, 5) * 0.06,
+              duration: 0.6,
+              delay: Math.min(i, 5) * 0.05,
               ease: [0.16, 1, 0.3, 1],
             }}
-            data-cursor-hover
-            className="glass card-hover group w-[280px] shrink-0 snap-start overflow-hidden rounded-3xl sm:w-[320px]"
+            className="group w-[290px] shrink-0 snap-start sm:w-[360px]"
           >
-            <div className="relative aspect-[16/10] overflow-hidden bg-bg2">
+            <div className="relative aspect-[4/3] overflow-hidden border border-line bg-bg2">
               <Image
                 src={work.image}
                 alt={work.title}
                 fill
-                sizes="320px"
+                sizes="360px"
                 draggable={false}
-                className="object-cover transition-transform duration-700 ease-smooth group-hover:scale-[1.07]"
+                className="object-cover grayscale transition-all duration-700 ease-smooth group-hover:scale-[1.04] group-hover:grayscale-0"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent opacity-70" />
-              <span className="absolute left-3.5 top-3.5 rounded-lg bg-black/45 px-2.5 py-1 font-display text-xs font-bold text-white backdrop-blur-md">
-                {String(i + 1).padStart(2, "0")}
-              </span>
             </div>
 
-            <div className="p-5">
-              <h3 className="font-display text-[15px] font-bold leading-snug transition-colors duration-300 group-hover:text-acc">
-                {work.title}
-              </h3>
-              <p className="mt-2 text-[13px] leading-relaxed text-muted">
-                {work.desc}
-              </p>
+            <div className="mt-4 flex items-baseline gap-4 border-t border-line pt-3">
+              <span className="text-[11px] tabular-nums text-faint">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div>
+                <h3 className="text-[15px] font-medium leading-snug transition-colors duration-300 group-hover:text-acc">
+                  {work.title}
+                </h3>
+                <p className="mt-1.5 text-[13px] leading-relaxed text-muted">
+                  {work.desc}
+                </p>
+              </div>
             </div>
           </motion.article>
         ))}
       </div>
 
       <div className="shell">
-        <Reveal delay={120}>
-          <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-muted sm:text-left">
-            ← Geser untuk melihat semua proyek →
-          </p>
-        </Reveal>
+        <p className="mt-6 text-[11px] uppercase tracking-[0.2em] text-muted">
+          ← Geser untuk melihat semua proyek →
+        </p>
       </div>
     </section>
   );

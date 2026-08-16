@@ -5,39 +5,43 @@ import { Reveal } from "../Reveal";
 
 export function Skills() {
   return (
-    <section id="skills" className="section-pad relative">
-      <div className="shell grid gap-14 lg:grid-cols-[1fr_1.15fr] lg:items-center lg:gap-20">
-        <div>
-          <Reveal>
-            <p className="eyebrow">Skills</p>
-          </Reveal>
-          <Reveal delay={70}>
-            <h2 className="mt-4 font-display text-[clamp(2rem,4.6vw,3.4rem)] font-bold leading-[1.1] tracking-tight">
+    <section id="skills" className="section-pad">
+      <div className="shell">
+        <Reveal>
+          <p className="index-mark">05 — Skills</p>
+        </Reveal>
+
+        <div className="mt-10 grid gap-y-8 md:grid-cols-12 md:gap-x-10">
+          <Reveal delay={60} className="md:col-span-7">
+            <h2 className="display text-[clamp(2.3rem,6.5vw,5rem)]">
               Keahlian yang
               <br />
-              <em className="grad-text not-italic">Teruji Nyata.</em>
+              teruji nyata<span className="text-acc">.</span>
             </h2>
           </Reveal>
-          <Reveal delay={150}>
-            <p className="mt-6 max-w-md text-[17px] leading-relaxed text-muted">
+          <Reveal delay={130} className="md:col-span-5 md:rule-l md:pl-10">
+            <p className="text-[17px] leading-[1.65] text-muted">
               Setiap skill diasah langsung dalam proyek-proyek nyata selama
               bertahun-tahun, bukan sekadar teori.
             </p>
           </Reveal>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-2">
+        {/* Two-column index of disciplines */}
+        <div className="mt-16 grid border-t border-line md:grid-cols-2 md:gap-x-10">
           {skills.map((skill, i) => (
-            <Reveal key={skill.name} delay={80 + i * 55}>
-              <div
-                data-cursor-hover
-                className="glass card-hover group flex h-full items-center gap-3.5 rounded-2xl p-4"
-              >
-                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-acc/10 text-xl transition-transform duration-500 ease-smooth group-hover:scale-110">
-                  {skill.icon}
+            <Reveal key={skill.name} delay={60 + i * 50}>
+              <div className="group flex items-baseline justify-between border-b border-line py-6 transition-colors duration-300 hover:text-acc">
+                <span className="flex items-baseline gap-5">
+                  <span className="text-[11px] tabular-nums text-faint">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="text-[clamp(1.1rem,2.6vw,1.5rem)] font-medium">
+                    {skill.name}
+                  </span>
                 </span>
-                <span className="text-sm font-semibold leading-snug">
-                  {skill.name}
+                <span className="translate-x-0 text-lg opacity-0 transition-all duration-500 ease-smooth group-hover:translate-x-0 group-hover:opacity-100">
+                  ↗
                 </span>
               </div>
             </Reveal>

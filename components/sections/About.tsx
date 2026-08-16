@@ -1,97 +1,80 @@
 "use client";
 
-import { profile, stats, techStack } from "@/data/portfolio";
-import { Counter } from "../Counter";
+import { profile, techStack } from "@/data/portfolio";
 import { Reveal } from "../Reveal";
-import { IconGithub, IconLinkedin, IconMail } from "../Icons";
-
-const links = [
-  { href: profile.github, Icon: IconGithub, label: "GitHub" },
-  { href: profile.linkedin, Icon: IconLinkedin, label: "LinkedIn" },
-  { href: `mailto:${profile.email}`, Icon: IconMail, label: "Email" },
-];
 
 export function About() {
   return (
-    <section id="about" className="section-pad relative">
-      <div className="shell grid gap-14 lg:grid-cols-2 lg:items-center lg:gap-20">
-        <div>
-          <Reveal>
-            <p className="eyebrow">About Me</p>
-          </Reveal>
+    <section id="about" className="section-pad">
+      <div className="shell">
+        <Reveal>
+          <p className="index-mark">02 — About</p>
+        </Reveal>
 
-          <Reveal delay={70}>
-            <h2 className="mt-4 font-display text-[clamp(2rem,4.6vw,3.4rem)] font-bold leading-[1.1] tracking-tight">
-              Saya membangun
-              <br />
-              <em className="grad-text not-italic">pengalaman digital</em>
-              <br />
-              yang bermakna.
-            </h2>
-          </Reveal>
+        <div className="mt-12 grid gap-y-12 md:grid-cols-12 md:gap-x-10">
+          <div className="md:col-span-7">
+            <Reveal delay={60}>
+              <h2 className="display text-[clamp(2.3rem,6.5vw,5rem)]">
+                Saya membangun
+                <br />
+                pengalaman digital
+                <br />
+                yang bermakna<span className="text-acc">.</span>
+              </h2>
+            </Reveal>
+          </div>
 
-          <Reveal delay={140}>
-            <p className="mt-6 max-w-xl text-[17px] leading-relaxed text-muted">
-              Software Engineer dengan pengalaman{" "}
-              <strong className="font-semibold text-txt">5+ tahun</strong>{" "}
-              mengembangkan aplikasi web, mobile, dan sistem enterprise — dari
-              startup hingga perusahaan multinasional.
-            </p>
-          </Reveal>
+          <div className="md:col-span-5 md:rule-l md:pl-10">
+            <Reveal delay={130}>
+              <p className="text-[17px] leading-[1.65]">
+                Software Engineer dengan pengalaman{" "}
+                <span className="underline decoration-acc decoration-2 underline-offset-4">
+                  5+ tahun
+                </span>{" "}
+                mengembangkan aplikasi web, mobile, dan sistem enterprise — dari
+                startup hingga perusahaan multinasional.
+              </p>
+            </Reveal>
 
-          <Reveal delay={210}>
-            <div className="mt-8 flex flex-wrap gap-3">
-              {links.map(({ href, Icon, label }) => (
+            <Reveal delay={200}>
+              <div className="mt-8 flex flex-wrap gap-x-7 gap-y-3 text-sm font-semibold uppercase tracking-[0.14em]">
                 <a
-                  key={label}
-                  href={href}
+                  href={profile.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 text-sm font-semibold text-muted transition-all duration-300 hover:-translate-y-0.5 hover:border-acc hover:text-acc"
+                  className="rule-link"
                 >
-                  <Icon className="h-[14px] w-[14px]" />
-                  {label}
+                  LinkedIn ↗
                 </a>
-              ))}
-            </div>
-          </Reveal>
+                <a href={`mailto:${profile.email}`} className="rule-link">
+                  Email ↗
+                </a>
+              </div>
+            </Reveal>
+          </div>
         </div>
 
-        <div>
-          <Reveal direction="right" delay={60}>
-            <div className="glass grid grid-cols-3 rounded-3xl p-7">
-              {stats.map((s, i) => (
-                <div
-                  key={s.label}
-                  className={`text-center ${
-                    i < stats.length - 1 ? "border-r border-line" : ""
-                  }`}
-                >
-                  <div className="font-display text-[clamp(1.9rem,4vw,2.7rem)] font-bold grad-text">
-                    <Counter to={s.value} />
-                    <span>+</span>
-                  </div>
-                  <div className="mt-1 text-[10px] uppercase tracking-[0.18em] text-muted">
-                    {s.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-
-          <Reveal direction="right" delay={160}>
-            <div className="mt-7 flex flex-wrap gap-2.5">
-              {techStack.map((tech) => (
-                <span
+        {/* Tech stack as an index list, not pills */}
+        <Reveal delay={120}>
+          <div className="mt-16 border-t border-line pt-6">
+            <p className="text-[11px] uppercase tracking-[0.24em] text-muted">
+              Stack
+            </p>
+            <ul className="mt-5 flex flex-wrap gap-x-8 gap-y-2.5">
+              {techStack.map((tech, i) => (
+                <li
                   key={tech}
-                  className="rounded-full border border-line bg-surface px-3.5 py-1.5 text-[13px] font-medium text-muted transition-all duration-300 hover:-translate-y-0.5 hover:border-acc hover:text-acc"
+                  className="flex items-baseline gap-2 text-[15px] transition-colors duration-300 hover:text-acc"
                 >
+                  <span className="text-[10px] tabular-nums text-faint">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
                   {tech}
-                </span>
+                </li>
               ))}
-            </div>
-          </Reveal>
-        </div>
+            </ul>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

@@ -16,14 +16,13 @@ const config: Config = {
       colors: {
         bg: "var(--bg)",
         bg2: "var(--bg2)",
-        surface: "var(--card)",
+        ink: "var(--ink)",
         line: "var(--border)",
         line2: "var(--border2)",
         txt: "var(--txt)",
         muted: "var(--txt2)",
         faint: "var(--txt3)",
         acc: "var(--acc)",
-        acc2: "var(--acc2)",
       },
       transitionTimingFunction: {
         smooth: "cubic-bezier(.16,1,.3,1)",

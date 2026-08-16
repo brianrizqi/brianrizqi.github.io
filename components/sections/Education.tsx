@@ -2,49 +2,45 @@
 
 import { education } from "@/data/portfolio";
 import { Reveal } from "../Reveal";
-import { IconCap } from "../Icons";
 
 export function Education() {
   return (
-    <section id="education" className="section-pad relative">
+    <section id="education" className="section-pad">
       <div className="shell">
         <Reveal>
-          <p className="eyebrow">Education</p>
-          <h2 className="mt-4 font-display text-[clamp(2rem,4.6vw,3.4rem)] font-bold leading-tight tracking-tight">
-            Perjalanan <em className="grad-text not-italic">Akademik.</em>
+          <p className="index-mark">03 — Education</p>
+        </Reveal>
+
+        <Reveal delay={60}>
+          <h2 className="display mt-10 text-[clamp(2.3rem,7vw,5.5rem)]">
+            Perjalanan akademik<span className="text-acc">.</span>
           </h2>
         </Reveal>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
+        <div className="mt-14 border-b border-line">
           {education.map((ed, i) => (
-            <Reveal key={ed.badge} delay={90 + i * 90}>
-              <article
-                data-cursor-hover
-                className={`glass card-hover group h-full rounded-3xl p-7 ${
-                  ed.accent ? "ring-1 ring-acc/35" : ""
-                }`}
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-muted">
-                    {ed.year}
-                  </span>
-                  <IconCap className="h-5 w-5 shrink-0 text-muted transition-colors duration-300 group-hover:text-acc" />
-                </div>
+            <Reveal key={ed.badge} delay={80 + i * 70}>
+              <article className="row-item group grid grid-cols-12 items-baseline gap-x-4 gap-y-2 px-2 py-7 md:gap-x-8">
+                <span className="col-span-2 text-[11px] tabular-nums text-muted transition-colors duration-300 group-hover:text-bg md:col-span-1">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
 
-                <div
-                  className={`mt-5 inline-block rounded-full px-3 py-1 text-[11px] font-bold ${
-                    ed.accent
-                      ? "bg-gradient-to-r from-acc to-acc2 text-white"
-                      : "border border-line text-muted"
-                  }`}
-                >
-                  {ed.badge}
-                </div>
-
-                <h3 className="mt-4 font-display text-xl font-bold leading-snug">
+                <h3 className="display col-span-10 text-[clamp(1.4rem,3.4vw,2.4rem)] md:col-span-5">
                   {ed.school}
                 </h3>
-                <p className="mt-1.5 text-sm text-muted">{ed.major}</p>
+
+                <p className="col-span-6 col-start-3 text-sm text-muted transition-colors duration-300 group-hover:text-bg md:col-span-3 md:col-start-auto">
+                  {ed.major}
+                </p>
+
+                <div className="col-span-4 flex flex-col items-end gap-1 md:col-span-3">
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.16em]">
+                    {ed.badge}
+                  </span>
+                  <span className="text-[11px] tabular-nums text-muted transition-colors duration-300 group-hover:text-bg">
+                    {ed.year}
+                  </span>
+                </div>
               </article>
             </Reveal>
           ))}

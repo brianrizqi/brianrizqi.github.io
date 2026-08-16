@@ -7,9 +7,7 @@ export const profile = {
   photo: "/images/brian.jpeg",
   logo: "/images/logo.png",
   email: "brian@onestep.id",
-  github: "https://github.com/brianrizqi",
-  linkedin: "https://linkedin.com/in/brianrizqi",
-  instagram: "https://instagram.com/brianrizqi",
+  linkedin: "https://www.linkedin.com/in/brianrizqi/",
 };
 
 export const stats = [
